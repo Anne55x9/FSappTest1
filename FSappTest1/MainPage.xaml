@@ -1,13 +1,34 @@
 ﻿<Page
-    x:Class="FSappTest1.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FSappTest1"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:FSappTest1.ViewModel"
+    x:Class="FSappTest1.MainPage"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <ViewModel:FaellesMadMainView/>
+    </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="AliceBlue">
+        <TextBlock x:Name="HusNr" HorizontalAlignment="Left" Margin="20,25,0,0" TextWrapping="Wrap" Text="Husnummer" VerticalAlignment="Top"/>
+        <TextBlock x:Name="NoAdults" HorizontalAlignment="Left" Margin="120,25,0,0" TextWrapping="Wrap" Text="Antal Voksne" VerticalAlignment="Top"/>
+        <TextBlock x:Name="NoKidsGr1" HorizontalAlignment="Left" Margin="220,25,0,0" TextWrapping="Wrap" Text="Kids (age 7-15)" VerticalAlignment="Top"/>
+        <TextBlock x:Name="NoKidsGr2" HorizontalAlignment="Left" Margin=" 350,25,0,0" TextWrapping="Wrap" Text="Kids (age 3-6)" VerticalAlignment="Top"/>
+        <TextBlock x:Name="NoKidsGr3" HorizontalAlignment="Left" Margin="480, 25,0,0" TextWrapping="Wrap" Text="Kids (age 0-2)" VerticalAlignment="Top"/>
+        <TextBox x:Name="HusNrInput" HorizontalAlignment="Left" Margin="20,50,0,0" TextWrapping="Wrap" Text="{Binding InsertAttendee.HusNr, Mode=TwoWay}" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="NoAdultInput" HorizontalAlignment="Left" Margin=" 120,50,0,0" TextWrapping="Wrap" Text="{Binding InsertAttendee.NoAdults, Mode=TwoWay}" VerticalAlignment="top" Width="80"/>
+        <TextBox x:Name="KidsGr1Input" HorizontalAlignment="Left" Margin="220, 50,0,0" TextWrapping="Wrap" Text="{Binding InsertAttendee.NoKidsGr1, Mode=TwoWay}" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="KidsGr2Input" HorizontalAlignment="Left" Margin="350,50,0,0" TextWrapping="Wrap" Text="{Binding InsertAttendee.NoKidsGr2, Mode=TwoWay}" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="KidsGr3Input" HorizontalAlignment="Left" Margin="480,50,0,0" TextWrapping="Wrap" Text="{Binding InsertAttendee.NoKidsGr3, Mode=TwoWay}" VerticalAlignment="Top" Width="80"/>
+        <ListView x:Name="listViewAttendee" HorizontalAlignment="Left" Height="267" Margin="20,181,0,0" VerticalAlignment="Top" Width="851" ItemsSource="{Binding AttendeeList}" SelectedItem="{Binding SelectedAttendee, Mode=TwoWay}"/>
+        <TextBlock x:Name="ListView" HorizontalAlignment="Left" Margin="30,150,0,0" TextWrapping="Wrap" Text="House Hold Attendee List" VerticalAlignment="Top" Height="20" Width="200"/>
+        <Button x:Name="ButtonAdd" Content="Add House Attendees to list" HorizontalAlignment="Left" Margin="30,97,0,0" VerticalAlignment="Top" ClickMode="{Binding InsertAttendee, Mode=TwoWay}" Command="{Binding AddAttendeeCommand}" Width="259"/>
+        <Button x:Name="ButtonRemove" Content="Remove House Attendees from List" HorizontalAlignment="Left" Margin="25,639,0,0" VerticalAlignment="Top" ClickMode="{Binding AttendeeList, Mode=TwoWay}" Command="{Binding RemoveAttendeeCommand}" Width="299" RenderTransformOrigin="-0.137,8.844"/>
+        <TextBlock x:Name="slecteddetail" HorizontalAlignment="Left" Margin="37,476,0,0" TextWrapping="Wrap" Text="House No. Attendees Selected" VerticalAlignment="Top" Height="20" Width="217"/>
+        <TextBlock x:Name="seeSelectedAttendees" HorizontalAlignment="Left" Margin="37,543,0,0" TextWrapping="Wrap" Text="{Binding SelectedAttendee}" VerticalAlignment="Top" Height="20" Width="878"/>
+        <Button x:Name="SaveList" Content="Save List" HorizontalAlignment="Left" Margin="347,95,0,0" VerticalAlignment="Top" Command="{Binding SaveAttendeeListCommand}" Width="103"/>
+        <Button x:Name="GetList" Content="Get Saved List" HorizontalAlignment="Left" Margin="472,97,0,0" VerticalAlignment="Top" Command="{Binding GetAttendeeListCommand}" Width="121"/>
     </Grid>
 </Page>

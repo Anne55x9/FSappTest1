@@ -5,4 +5,15 @@
     xmlns:local="using:FSappTest1"
     RequestedTheme="Light">
 
+
+    
+    
+    <!--<Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="AppStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>-->
+
 </Application>
