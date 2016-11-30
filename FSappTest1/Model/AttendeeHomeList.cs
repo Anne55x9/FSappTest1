@@ -8,18 +8,18 @@ using Newtonsoft.Json;
 
 namespace FSappTest1.Model
 {
-    public class AttendeeList: ObservableCollection<Attendee>
+    public class AttendeeHomeList: ObservableCollection<AttendeeHome>
     {
 
         /// <summary>
         /// Tilføjer herunder en default liste i mit view
         /// </summary>
-        public AttendeeList()
+        public AttendeeHomeList()
             :base()
         {
-            this.Add(new Attendee() { HusNr = 0, NoAdults = 0, NoKidsGr1 = 0, NoKidsGr2 = 0, NoKidsGr3 = 0});
-            this.Add(new Attendee() { HusNr = 1, NoAdults = 1, NoKidsGr1 = 1, NoKidsGr2 = 1, NoKidsGr3 = 2 });
-            this.Add(new Attendee() { HusNr = 2, NoAdults = 2, NoKidsGr1 = 2, NoKidsGr2 = 2, NoKidsGr3 = 2 });
+            this.Add(new AttendeeHome() { HusNr = 0, NoAdults = 0, NoKidsGr1 = 0, NoKidsGr2 = 0, NoKidsGr3 = 0});
+            this.Add(new AttendeeHome() { HusNr = 1, NoAdults = 1, NoKidsGr1 = 1, NoKidsGr2 = 1, NoKidsGr3 = 2 });
+            this.Add(new AttendeeHome() { HusNr = 2, NoAdults = 2, NoKidsGr1 = 2, NoKidsGr2 = 2, NoKidsGr3 = 2 });
         }
 
         /// <summary>
@@ -40,10 +40,10 @@ namespace FSappTest1.Model
 
         public void InsertJson(string jsonAttendee)
         {
-            List<Attendee> nyListe = JsonConvert.DeserializeObject<List<Attendee>>(jsonAttendee);
-            foreach (var Attendee in nyListe)
+            List<AttendeeHome> nyListe = JsonConvert.DeserializeObject<List<AttendeeHome>>(jsonAttendee);
+            foreach (var AttendeeHome in nyListe)
             {
-                this.Add(Attendee);
+                this.Add(AttendeeHome);
             }
         }
 

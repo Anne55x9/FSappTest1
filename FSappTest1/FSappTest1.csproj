@@ -98,8 +98,10 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Attendee.cs" />
-    <Compile Include="Model\AttendeeList.cs" />
+    <Compile Include="Model\AttendeeHome.cs" />
+    <Compile Include="Model\AttendeeHomeList.cs" />
+    <Compile Include="Model\Plan.cs" />
+    <Compile Include="Model\PlanList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\FaellesMadMainView.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />

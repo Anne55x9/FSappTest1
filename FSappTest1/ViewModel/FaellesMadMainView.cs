@@ -22,9 +22,9 @@ namespace FSappTest1.ViewModel
         /// </summary>
         /// 
 
-        private Model.Attendee insertAttendee;
-        private Model.AttendeeList attendeeList;
-        private Model.Attendee selectedAttendee;
+        private Model.AttendeeHome insertAttendee;
+        private Model.AttendeeHomeList attendeeList;
+        private Model.AttendeeHome selectedAttendee;
 
         private RelayCommand addAttendeeCommand;
         private RelayCommand removeAttendeeCommand;
@@ -34,7 +34,6 @@ namespace FSappTest1.ViewModel
         //private readonly string filnavn = "JsonMenu.json";
         private readonly string filnavn = "JsonAttendee.json";
 
-
         /// <summary>
         /// Indsæt private instance fields for commands Add and Remove from AttendeesList
         /// Måske også en command med add remove MenuList? (Nyt cs eller insæt her.)
@@ -43,17 +42,20 @@ namespace FSappTest1.ViewModel
 
         public FaellesMadMainView()
         {
-            // Kalder objekt i Attendee og AttendeeList klasserne
+            // Kalder objekt i AttendeeHome og AttendeeHomeList klasserne
 
-            attendeeList = new Model.AttendeeList();
-            insertAttendee = new Model.Attendee();
-            selectedAttendee = new Model.Attendee();
+            attendeeList = new Model.AttendeeHomeList();
+            insertAttendee = new Model.AttendeeHome();
+            selectedAttendee = new Model.AttendeeHome();
 
             //Kalder object fra RelayCommand klassen
             addAttendeeCommand = new RelayCommand(AddNewAttendee);
             removeAttendeeCommand = new RelayCommand(RemoveAttendeeInList);
             SaveAttendeeListCommand = new RelayCommand(SaveDataListAttendeeAsync);
             GetAttendeeListCommand = new RelayCommand(GetDataListAttendeeAsync);
+
+            //Kalder objekter fra plan og planList klasserne?
+
 
 
             //Laver en instans af local folder.
@@ -68,19 +70,19 @@ namespace FSappTest1.ViewModel
         /// </summary>
         /// 
 
-            public Model.Attendee InsertAttendee
+            public Model.AttendeeHome InsertAttendee
         {
             get { return insertAttendee; }
             set { insertAttendee = value; }
         }
 
-        public Model.AttendeeList AttendeeList
+        public Model.AttendeeHomeList AttendeeList
         {
             get { return attendeeList;}
             set { attendeeList = value; }
         }
 
-        public Model.Attendee SelectedAttendee
+        public Model.AttendeeHome SelectedAttendee
         {
             get { return selectedAttendee; }
             set { selectedAttendee = value; OnPropertyChanged(nameof(SelectedAttendee)); }
@@ -88,7 +90,7 @@ namespace FSappTest1.ViewModel
         
             public void AddNewAttendee()
         {
-            Attendee tempAttendee = new Attendee();
+            AttendeeHome tempAttendee = new AttendeeHome();
             tempAttendee.HusNr = insertAttendee.HusNr;
             tempAttendee.NoAdults = insertAttendee.NoAdults;
             tempAttendee.NoKidsGr1 = insertAttendee.NoKidsGr1;
@@ -142,6 +144,80 @@ namespace FSappTest1.ViewModel
                 MessageDialog NoDataList = new MessageDialog("No saved list yet", "Error");
                 await NoDataList.ShowAsync();
             }
+        }
+
+        /// <summary>
+        /// Denne del er Planlægnings koden
+        /// </summary>
+        /// 
+
+        // Instancefields for plan:
+
+        // Plan properties og lister:
+
+        private Model.Plan insertPlan;
+        private Model.PlanList planList;
+        private Model.Plan selectedPlan;
+
+        private RelayCommand addToPlanList;
+        private RelayCommand removeFromPlanList;
+
+        private readonly string filnavn1 = "JsonPlan";
+
+        //Metoder:
+
+        public Model.Plan InserPlan
+        {
+            get { return insertPlan; }
+            set { insertPlan = value; }
+        }
+
+        public Model.PlanList PlanList
+        {
+            get { return planList; }
+            set { planList = value; }
+        }
+
+        public Model.Plan SelectedPlan
+        {
+            get { return selectedPlan; }
+            set { selectedPlan = value; OnPropertyChanged(nameof(SelectedPlan)); }
+        }
+
+        public void AddNewPlanOfDay()
+        {
+            Plan tempPlan = new Plan();
+            tempPlan.ChefKok = insertPlan.ChefKok;
+            tempPlan.Help1 = insertPlan.Help1;
+            tempPlan.Help2 = insertPlan.Help2;
+            tempPlan.Help3 = insertPlan.Help3;
+            tempPlan.ExtraHelp = insertPlan.ExtraHelp;
+            tempPlan.Clean1 = insertPlan.Clean1;
+            tempPlan.Clean2 = insertPlan.Clean2;
+            tempPlan.Clean3 = insertPlan.Clean3;
+            tempPlan.Clean4 = insertPlan.Clean4;
+            tempPlan.Menu = insertPlan.Menu;
+
+            PlanList.Add(tempPlan);
+        }
+
+        public void RemovePlanOfDayInList()
+        {
+            planList.Remove(selectedPlan);
+        }
+
+        //Command koder:
+
+        public RelayCommand AddPlanOfDayCommand
+        {
+            get { return addToPlanList; }
+            set { addToPlanList = value; }
+        }
+
+        public RelayCommand RemoveFromPlanList
+        {
+            get { return removeFromPlanList; }
+            set { removeFromPlanList = value; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

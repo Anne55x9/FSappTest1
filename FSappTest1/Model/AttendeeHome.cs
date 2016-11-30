@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace FSappTest1.Model
 {
-    public class Attendee
+    public class AttendeeHome
     {
         private int husNr;
 
